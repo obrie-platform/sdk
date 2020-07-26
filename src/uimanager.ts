@@ -1,3 +1,12 @@
+declare const window: Record<any, any>;
+declare const ObrieApi: ObrieInterface;
+
+declare global {
+    interface ObrieInterface {
+        sendMessage(message: string): void;
+    }
+}
+
 export interface ObrieElement {
     _rootContainer?: any;
     reference: number;
@@ -19,7 +28,7 @@ export function createContainer() {
     return createElement('container')
 }
 
-const event = (ev: string, payload: any) => {
+export const event = (ev: string, payload: any) => {
     if (typeof ObrieApi !== 'undefined') {
         ObrieApi.sendMessage(JSON.stringify({
             type: ev,

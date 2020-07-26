@@ -11,7 +11,6 @@ import {
     TextDirection, TextOverflow, TextStyle,
     VerticalDirection
 } from "./interfaces";
-import {PropsWithChildren} from "react";
 
 export interface ButtonProps {
     textColor?: string;

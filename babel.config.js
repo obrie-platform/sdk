@@ -13,8 +13,7 @@ module.exports = api => {
                     targets: { chrome: "84" }
                 }
             ],
-            "@babel/preset-typescript",
-            "@babel/preset-react"
+            "@babel/preset-typescript"
         ]
     }
 }

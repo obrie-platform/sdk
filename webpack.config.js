@@ -5,15 +5,11 @@ module.exports = {
     mode: "production",
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'main.js',
+        filename: 'index.js',
         publicPath: '/',
         libraryTarget: "umd",
         library: "obrieSdk"
     },
-    externals: {
-        'react': 'umd React'
-    },
-    // target: "node",
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
