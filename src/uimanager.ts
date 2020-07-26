@@ -29,7 +29,7 @@ const event = (ev: string, payload: any) => {
 }
 
 if (typeof ObrieApi !== 'undefined') {
-    ObrieApi.registerCallback(message => {
+    /*ObrieApi.registerCallback(message => {
         const values = JSON.parse(message)
 
         if (values.type === 'call') {
@@ -37,7 +37,7 @@ if (typeof ObrieApi !== 'undefined') {
 
             flatTree.get(ref).props[property](...args)
         }
-    })
+    })*/
 }
 
 let id = 10;
@@ -47,7 +47,7 @@ function randId() {
 }
 
 export const container = createContainer();
-export const flatTree = new Map<number, ObrieElement>();
+window.flatTree = new Map<number, ObrieElement>();
 
 export function createElement(type: string, options: CreateElementOptions = {}): ObrieElement {
     const element: ObrieElement = {
@@ -58,11 +58,11 @@ export function createElement(type: string, options: CreateElementOptions = {}):
                 this.children = [];
             }
 
-            flatTree.set(element.reference, element);
+            window.flatTree.set(element.reference, element);
             this.children.push(element);
         },
         removeChild(element: ObrieElement) {
-            flatTree.delete(element.reference);
+            window.flatTree.delete(element.reference);
             this.children.splice(this.children.indexOf(element), 1);
         },
         insertBefore(child: ObrieElement, beforeChild: ObrieElement) {
@@ -73,7 +73,7 @@ export function createElement(type: string, options: CreateElementOptions = {}):
                 const beforeChildIndex = this.children.indexOf(beforeChild);
                 this.children.splice(beforeChildIndex, 0, child);
             } else {
-                flatTree.set(element.reference, child);
+                window.flatTree.set(element.reference, child);
                 const index = this.children.indexOf(beforeChild);
                 this.children.splice(index, 0, child);
             }
@@ -95,13 +95,13 @@ export const UIManager = {
     removeChild: (parentInstance: ObrieElement, child: ObrieElement) => {
         parentInstance.removeChild(child);
 
-        event('uiRemove', { 'ref': child.reference })
+        event('uiRemove', { 'containerRef': parentInstance.reference, 'ref': child.reference })
     },
 
     insertBefore: (container: ObrieElement, child: ObrieElement, before: ObrieElement) => {
         container.insertBefore(child, before);
 
-        event('uiInsertBefore', { 'ref': before.reference, 'element': child })
+        event('uiInsertBefore', { 'containerRef': container.reference, 'ref': before.reference, 'element': child })
     },
 
     update: (element: ObrieElement, props: any) => {
@@ -111,7 +111,15 @@ export const UIManager = {
     },
 
     createElement: (type: string, props: any) => {
-        return createElement(type, { props: Object.keys(props).length ? props : null })
+        const element = createElement(type, props)
+        event('uiCreate', { 'element': element })
+
+        return element
+    },
+
+    updateText(element: ObrieElement, text: string) {
+        element.textContent = text;
+        event('uiUpdateText', { 'ref': element.reference, 'text': text })
     },
 
     appendChild: (parent: ObrieElement, element: ObrieElement) => {

@@ -1,12 +1,23 @@
 {
   "name": "@obrie/sdk",
-  "version": "0.0.1",
+  "version": "0.0.15",
   "description": "SDK for Obrie mini apps",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Obrie",
   "license": "BSD-2-Clause",
+  "files": [
+    "dist/*",
+    "readme.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obrie-platform/sdk.git"
+  },
   "scripts": {
-    "build": "webpack"
+    "publish": "npm publish --access public",
+    "build": "webpack",
+    "buildd": "rollup --config rollup.config.js && tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap"
   },
   "dependencies": {
     "@types/react": "^16.9.43",

@@ -2,6 +2,9 @@ import * as React from 'react'
 import {PropsWithChildren} from "react";
 
 declare global {
+    const window: Record<any, any>;
+    const ObrieApi: ObrieInterface;
+
     namespace JSX {
         interface IntrinsicElements {
             screen: {};
@@ -19,8 +22,6 @@ declare global {
         sendMessage(message: string): void;
         registerCallback(callback: (message: string) => any): void;
     }
-
-    const ObrieApi: ObrieInterface;
 }
 
 export interface ScreenProps extends PropsWithChildren<any> {

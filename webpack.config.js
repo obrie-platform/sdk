@@ -1,13 +1,20 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/lib',
+    entry: './src/index',
     mode: "production",
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js',
-        publicPath: '/'
+        filename: 'main.js',
+        publicPath: '/',
+        // libraryTarget: "var",
+        libraryTarget: "umd",
+        library: "obrieSdk"
     },
+    externals: {
+        'react': 'umd React'
+    },
+    // target: "node",
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },

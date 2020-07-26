@@ -1,4 +1,4 @@
-import * as ReactReconciler from 'react-reconciler';
+import ReactReconciler from 'react-reconciler';
 import {container, createElement, ObrieElement, UIManager} from "./uimanager";
 
 function deepDiff(prev: any, next: any) {
@@ -74,10 +74,10 @@ const hostConfig: any = {
     createInstance: (type: any, newProps: any, rootContainerInstance: any, _currentHostContext: any, workInProgress: any) => {
         const { children, ...props } = newProps;
 
-        return createElement(type, { props: Object.keys(props).length ? props : null })
+        return UIManager.createElement(type, { props: Object.keys(props).length ? props : null })
     },
     createTextInstance: (text: any) => {
-        return createElement('text', { textContent: text })
+        return UIManager.createElement('text', { textContent: text })
     },
     appendInitialChild: (parent: ObrieElement, child: ObrieElement) => {
         UIManager.appendChild(parent, child);
@@ -100,11 +100,12 @@ const hostConfig: any = {
 
         if (diff(props, old)) {
             UIManager.update(domElement, props);
-            console.log('upd', domElement);
+        } else {
+            domElement.props = props;
         }
     },
     commitTextUpdate(textInstance: ObrieElement, oldText: any, newText: any) {
-        textInstance.textContent = newText;
+        UIManager.updateText(textInstance, newText)
     },
     removeChild(parentInstance: ObrieElement, child: ObrieElement) {
         UIManager.removeChild(parentInstance, child);
@@ -117,7 +118,7 @@ const hostConfig: any = {
     },
 };
 const ReactReconcilerInst = ReactReconciler(hostConfig);
-export const ObrieRenderer = {
+const ObrieRenderer = {
     render: (reactElement: any, callback?: any) => {
         if (!container._rootContainer) {
             container._rootContainer = ReactReconcilerInst.createContainer(container, false, null);
@@ -127,3 +128,5 @@ export const ObrieRenderer = {
         return ReactReconcilerInst.getPublicRootInstance(container._rootContainer)
     }
 };
+
+export { ObrieRenderer }
