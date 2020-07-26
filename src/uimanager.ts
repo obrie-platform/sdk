@@ -28,18 +28,6 @@ const event = (ev: string, payload: any) => {
     }
 }
 
-if (typeof ObrieApi !== 'undefined') {
-    /*ObrieApi.registerCallback(message => {
-        const values = JSON.parse(message)
-
-        if (values.type === 'call') {
-            const { ref, property, args } = values;
-
-            flatTree.get(ref).props[property](...args)
-        }
-    })*/
-}
-
 let id = 10;
 
 function randId() {

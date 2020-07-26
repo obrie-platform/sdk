@@ -7,7 +7,6 @@ module.exports = {
         path: path.join(__dirname, '/dist'),
         filename: 'main.js',
         publicPath: '/',
-        // libraryTarget: "var",
         libraryTarget: "umd",
         library: "obrieSdk"
     },

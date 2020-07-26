@@ -16,14 +16,7 @@
   },
   "scripts": {
     "publish": "npm publish --access public",
-    "build": "webpack",
-    "buildd": "rollup --config rollup.config.js && tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap"
-  },
-  "dependencies": {
-    "@types/react": "^16.9.43",
-    "@types/react-reconciler": "^0.18.0",
-    "react": "^16.13.1",
-    "react-reconciler": "^0.25.1"
+    "build": "webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
