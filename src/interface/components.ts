@@ -132,15 +132,15 @@ export interface TextFieldProps {
 }
 
 export interface TouchableProps {
-    onTapDown: () => any;
-    onTapUp: () => any;
-    onTap: () => any;
-    onTapCancel: () => any;
-    onDoubleTap: () => any;
-    onLongPress: () => any;
-    onLongPressStart: () => any;
-    onLongPressUp: () => any;
-    onLongPressEnd: () => any;
+    onTapDown?: () => any;
+    onTapUp?: () => any;
+    onTap?: () => any;
+    onTapCancel?: () => any;
+    onDoubleTap?: () => any;
+    onLongPress?: () => any;
+    onLongPressStart?: () => any;
+    onLongPressUp?: () => any;
+    onLongPressEnd?: () => any;
 }
 
 export interface StackProps {
