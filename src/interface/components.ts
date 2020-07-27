@@ -6,7 +6,7 @@ import {
     CrossAxisAlignment,
     EdgeInsets,
     MainAxisAlignment,
-    MainAxisSize, TextAlign,
+    MainAxisSize, Overflow, StackFit, TextAlign,
     TextBaseline,
     TextDirection, TextOverflow, TextStyle,
     VerticalDirection
@@ -79,6 +79,11 @@ export interface RowProps {
 }
 
 export interface ScreenProps {
+    title?: string;
+    brightness?: Brightness;
+    appBar: {
+        backgroundColor: string;
+    };
     backgroundColor?: string;
 }
 
@@ -97,4 +102,41 @@ export interface TextFieldProps {
     name?: string;
     placeholder?: string;
     label?: string;
+}
+
+export interface TouchableProps {
+    onTapDown: () => any;
+    onTapUp: () => any;
+    onTap: () => any;
+    onTapCancel: () => any;
+    onDoubleTap: () => any;
+    onLongPress: () => any;
+    onLongPressStart: () => any;
+    onLongPressUp: () => any;
+    onLongPressEnd: () => any;
+}
+
+export interface StackProps {
+    overflow?: Overflow;
+    fit?: StackFit;
+}
+
+export interface PositionedProps {
+    position: {
+        top?: number;
+        left?: number;
+        right?: number;
+        bottom?: number;
+    } | 'fill'
+    width?: number;
+    height?: number;
+}
+
+export interface SafeAreaProps {
+    top?: boolean;
+    left?: boolean;
+    right?: boolean;
+    bottom?: boolean;
+    minimum?: EdgeInsets;
+    maintainBottomViewPadding?: boolean;
 }

@@ -74,7 +74,10 @@ export type FontWeight = 'normal' | 'semibold' | 'bold'
 export type TextDecoration = 'none' | 'underline' | 'overline' | 'lineThrough'
 export type TextDecorationStyle = 'solid' | 'double' | 'dotted' | 'dashed' | 'wavy'
 export type TextOverflow = 'clip' | 'fade' | 'ellipsis' | 'visible'
+export type Overflow = 'clip' | 'visible'
 export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+export type StackFit = 'loose' | 'expand'
+export type Orientation = 'portrait' | 'landscape'
 
 export interface TextStyle {
     inherit?: boolean;

@@ -1,11 +1,25 @@
+import {Orientation, EdgeInsets} from "./interface/interfaces";
+
 declare const window: Record<any, any>;
 declare const ObrieApi: ObrieInterface;
 
-declare global {
-    interface ObrieInterface {
-        sendMessage(message: string): void;
+export interface AppContext {
+    ui: {
+        devicePixelRatio?: number;
+        orientation?: Orientation,
+        size?: {
+            width?: number;
+            height?: number;
+        },
+        viewInsets?: EdgeInsets
+        viewPadding?: EdgeInsets
+        padding?: EdgeInsets
     }
 }
+
+window.context = {
+    ui: {}
+} as AppContext;
 
 export interface ObrieElement {
     _rootContainer?: any;
