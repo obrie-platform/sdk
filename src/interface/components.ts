@@ -81,7 +81,7 @@ export interface RowProps {
 export interface ScreenProps {
     title?: string;
     brightness?: Brightness;
-    appBar: {
+    appBar?: {
         backgroundColor: string;
     };
     backgroundColor?: string;
