@@ -4,11 +4,11 @@ import {
     Brightness,
     Clip,
     CrossAxisAlignment,
-    EdgeInsets,
+    EdgeInsets, InputDecoration,
     MainAxisAlignment,
-    MainAxisSize, Overflow, StackFit, TextAlign,
-    TextBaseline,
-    TextDirection, TextOverflow, TextStyle,
+    MainAxisSize, Overflow, StackFit, TextAlign, TextAlignVertical,
+    TextBaseline, TextCapitalization,
+    TextDirection, TextInputAction, TextInputFormatter, TextInputType, TextOverflow, TextStyle,
     VerticalDirection
 } from "./interfaces";
 
@@ -101,7 +101,34 @@ export interface TextFieldProps {
     ref?: (ref: any) => any;
     name?: string;
     placeholder?: string;
+    keyboardType?: TextInputType;
+    textAlign?: TextAlign;
+    textDirection?: TextDirection;
+    textCapitalization?: TextCapitalization;
+    textInputAction?: TextInputAction;
+    textAlignVertical?: TextAlignVertical;
+    obscuringCharacter?: string;
+    obscureText?: boolean;
+    maxLines?: number;
+    minLines?: number;
+    maxLengthEnforced?: boolean;
+    maxLength?: number;
+    minLength?: number;
+    expands?: boolean;
+    autocorrect?: boolean;
+    enableSuggestions?: boolean;
+    enabled?: boolean;
+    style?: TextStyle;
+    readOnly?: boolean;
+    autofocus?: boolean;
+    showCursor?: boolean;
     label?: string;
+    decoration?: InputDecoration;
+    keyboardAppearance?: Brightness;
+    inputFormatters?: TextInputFormatter[];
+    onChanged?: (text: string) => any;
+    onEditingComplete?: (text: string) => any;
+    onSubmitted?: (text: string) => any;
 }
 
 export interface TouchableProps {

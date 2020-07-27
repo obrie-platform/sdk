@@ -79,6 +79,55 @@ export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end
 export type StackFit = 'loose' | 'expand'
 export type Orientation = 'portrait' | 'landscape'
 
+export type TextInputType = 'text' | 'multiline' | 'number' | 'phone' | 'dateTime' | 'emailAddress' | 'url' | 'visiblePassword'
+export type TextCapitalization = 'words' | 'sentences' | 'characters' | 'none'
+export type TextInputAction = 'none' | 'unspecified' | 'done' | 'go' | 'search' | 'send' | 'next' | 'previous' | 'continueAction' | 'join' | 'route' | 'emergencyCall' | 'newline'
+export type TextAlignVertical = 'top' | 'center' | 'bottom'
+export type FloatingLabelBehavior = 'never' | 'auto' | 'always'
+
+export interface TextInputFormatter {
+    formatEditUpdate(oldText: string, newText: string): string;
+}
+
+export interface Border {
+    color?: string;
+    width?: number;
+}
+
+export type InputBorderType = 'underline' | 'outline'
+
+export interface InputBorder {
+    type: InputBorderType,
+    border: Border
+}
+
+export interface InputDecoration {
+    labelText?: string;
+    labelStyle?: TextStyle;
+    helperText?: string;
+    helperStyle?: TextStyle;
+    helperMaxLines?: number;
+    hintStyle?: TextStyle;
+    hintMaxLines?: number;
+    errorText?: string;
+    errorMaxLines?: number;
+    hasFloatingPlaceholder?: boolean;
+    floatingLabelBehavior?: FloatingLabelBehavior;
+    isCollapsed?: boolean;
+    isDense?: boolean;
+    contentPadding?: EdgeInsets;
+    filled?: boolean;
+    fillColor?: string;
+    focusColor?: string;
+    hoverColor?: string;
+    errorBorder?: InputBorder;
+    focusedBorder?: InputBorder;
+    focusedErrorBorder?: InputBorder;
+    disabledBorder?: InputBorder;
+    enabledBorder?: InputBorder;
+    border?: InputBorder;
+}
+
 export interface TextStyle {
     inherit?: boolean;
     color?: string;
