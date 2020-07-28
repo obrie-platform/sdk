@@ -84,12 +84,17 @@ export type TextCapitalization = 'words' | 'sentences' | 'characters' | 'none'
 export type TextInputAction = 'none' | 'unspecified' | 'done' | 'go' | 'search' | 'send' | 'next' | 'previous' | 'continueAction' | 'join' | 'route' | 'emergencyCall' | 'newline'
 export type TextAlignVertical = 'top' | 'center' | 'bottom'
 export type FloatingLabelBehavior = 'never' | 'auto' | 'always'
+export type TableCellVerticalAlignment = 'top'
+ | 'middle'
+ | 'bottom'
+ | 'baseline'
+ | 'fill'
 
 export interface TextInputFormatter {
     formatEditUpdate(oldText: string, newText: string): string;
 }
 
-export interface Border {
+export interface BorderSide {
     color?: string;
     width?: number;
 }
@@ -98,7 +103,7 @@ export type InputBorderType = 'underline' | 'outline'
 
 export interface InputBorder {
     type: InputBorderType,
-    border: Border
+    border: BorderSide
 }
 
 export interface InputDecoration {
@@ -148,4 +153,13 @@ export interface BoxConstraints {
     maxWidth?: number;
     minHeight?: number;
     maxHeight?: number;
+}
+
+export interface TableBorder {
+    top?: BorderSide;
+    right?: BorderSide;
+    bottom?: BorderSide;
+    left?: BorderSide;
+    horizontalInside?: BorderSide;
+    verticalInside?: BorderSide;
 }

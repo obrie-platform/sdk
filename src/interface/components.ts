@@ -6,12 +6,11 @@ import {
     CrossAxisAlignment,
     EdgeInsets, InputDecoration,
     MainAxisAlignment,
-    MainAxisSize, Overflow, StackFit, TextAlign, TextAlignVertical,
+    MainAxisSize, Overflow, StackFit, TableBorder, TableCellVerticalAlignment, TextAlign, TextAlignVertical,
     TextBaseline, TextCapitalization,
     TextDirection, TextInputAction, TextInputFormatter, TextInputType, TextOverflow, TextStyle,
     VerticalDirection
 } from "./interfaces";
-import {sendAndReceive} from "../uimanager";
 
 export interface ButtonProps {
     textColor?: string;
@@ -219,4 +218,65 @@ export interface WebViewProps {
     onWebResourceError?: (error: WebResourceError) => any;
     gestureNavigationEnabled?: boolean;
     userAgent?: string;
+}
+
+export interface MapMarker {
+    image?: string;
+    coordinates?: [number, number];
+    label?: string;
+}
+
+export interface MapProps {
+    center?: [number, number];
+    zoom?: number;
+    markers?: MapMarker[];
+    showLocation?: boolean;
+}
+
+export interface SizedBoxProps {
+    width?: number;
+    height?: number;
+}
+
+export interface OverflowBoxProps {
+    alignment?: Alignment;
+    minWidth?: number;
+    maxWidth?: number;
+    minHeight?: number;
+    maxHeight?: number;
+}
+
+export interface TableColumnWidth {}
+
+export class FlexColumnWidth implements TableColumnWidth {
+    constructor(private value: number) {
+    }
+}
+
+export class FractionColumnWidth implements TableColumnWidth {
+    constructor(private value: number) {
+    }
+}
+
+export class FixedColumnWidth implements TableColumnWidth {
+    constructor(private value: number) {
+    }
+}
+
+export class IntrinsicColumnWidth implements TableColumnWidth {
+    constructor(private value?: number) {
+    }
+}
+
+export interface TableProps {
+    textDirection?: TextDirection;
+    border?: TableBorder;
+    defaultVerticalAlignment?: TableCellVerticalAlignment;
+    defaultColumnWidth?: TableColumnWidth;
+    columnWidths?: { [key: number]: TableColumnWidth };
+    textBaseline?: TextBaseline;
+}
+
+export interface TableRowProps {
+    decoration?: BoxDecoration;
 }
