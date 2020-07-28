@@ -7,3 +7,5 @@ declare global {
 export * from './uimanager'
 export * from './interface/interfaces'
 export * from './interface/components'
+export * from './controllers/TextFieldRef'
+export * from './controllers/WebViewRef'

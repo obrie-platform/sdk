@@ -1,5 +1,7 @@
 import {Orientation, EdgeInsets} from "./interface/interfaces";
 
+declare const clearTimeout: Function;
+declare const setTimeout: Function;
 declare const window: Record<any, any>;
 declare const ObrieApi: ObrieInterface;
 
@@ -16,6 +18,17 @@ export interface AppContext {
         padding?: EdgeInsets
     }
 }
+
+let receiverId = 1;
+let id = 10;
+
+function randId() {
+    return ++id;
+}
+
+export const container = createContainer();
+window.receivers = {};
+window.flatTree = new Map<number, ObrieElement>();
 
 window.context = {
     ui: {}
@@ -51,14 +64,45 @@ export const event = (ev: string, payload: any) => {
     }
 }
 
-let id = 10;
-
-function randId() {
-    return ++id;
+export interface FutureError {
+    message: string;
 }
 
-export const container = createContainer();
-window.flatTree = new Map<number, ObrieElement>();
+export const sendAndReceive: <T>(ev: string, elementId?: number, payload?: any) => Promise<T> = (ev: string, payload: any) => {
+    return new Promise<any>((resolve, reject) => {
+        if (typeof ObrieApi !== 'undefined') {
+            const id = receiverId;
+            receiverId++;
+
+            const timeout = setTimeout(() => {
+                delete window.receivers[id];
+                reject({
+                    message: 'Timeout error'
+                } as FutureError);
+            }, 10000);
+
+            window.receivers[id] = (message: string) => {
+                const result = JSON.parse(message);
+
+                if (result.error) {
+                    reject(result.error);
+                } else {
+                    resolve(result.value);
+                }
+
+                clearTimeout(timeout);
+                delete window.receivers[id];
+            }
+
+            ObrieApi.sendMessage(JSON.stringify({
+                type: ev,
+                elementId: id,
+                receiverId: id,
+                payload
+            }));
+        }
+    })
+}
 
 export function createElement(type: string, options: CreateElementOptions = {}): ObrieElement {
     const element: ObrieElement = {

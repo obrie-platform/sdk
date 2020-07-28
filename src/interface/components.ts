@@ -11,6 +11,7 @@ import {
     TextDirection, TextInputAction, TextInputFormatter, TextInputType, TextOverflow, TextStyle,
     VerticalDirection
 } from "./interfaces";
+import {sendAndReceive} from "../uimanager";
 
 export interface ButtonProps {
     textColor?: string;
@@ -98,7 +99,6 @@ export interface TextProps {
 }
 
 export interface TextFieldProps {
-    ref?: (ref: any) => any;
     name?: string;
     placeholder?: string;
     keyboardType?: TextInputType;
@@ -166,4 +166,57 @@ export interface SafeAreaProps {
     bottom?: boolean;
     minimum?: EdgeInsets;
     maintainBottomViewPadding?: boolean;
+}
+
+export type JavascriptMode = 'disabled' | 'unrestricted'
+
+export interface JavascriptMessage {
+    message?: string;
+}
+
+export interface JavascriptChannel {
+    name: string;
+    onMessageReceived: JavascriptMessage;
+}
+
+export enum WebResourceErrorType {
+    authentication = 'authentication',
+    badUrl = 'badUrl',
+    connect = 'connect',
+    failedSslHandshake = 'failedSslHandshake',
+    file = 'file',
+    fileNotFound = 'fileNotFound',
+    hostLookup = 'hostLookup',
+    io = 'io',
+    proxyAuthentication = 'proxyAuthentication',
+    redirectLoop = 'redirectLoop',
+    timeout = 'timeout',
+    tooManyRequests = 'tooManyRequests',
+    unknown = 'unknown',
+    unsafeResource = 'unsafeResource',
+    unsupportedAuthScheme = 'unsupportedAuthScheme',
+    unsupportedScheme = 'unsupportedScheme',
+    webContentProcessTerminated = 'webContentProcessTerminated',
+    webViewInvalidated = 'webViewInvalidated',
+    javaScriptExceptionOccurred = 'javaScriptExceptionOccurred',
+    javaScriptResultTypeIsUnsupported = 'javaScriptResultTypeIsUnsupported',
+}
+
+export interface WebResourceError {
+    errorCode: number;
+    description: string;
+    domain?: string;
+    errorType?: WebResourceErrorType;
+}
+
+export interface WebViewProps {
+    initialUrl?: string;
+    onWebViewCreated?: () => any;
+    javascriptMode?: JavascriptMode;
+    javascriptChannels?: JavascriptChannel[];
+    onPageStarted?: (url: string) => any;
+    onPageFinished?: (url: string) => any;
+    onWebResourceError?: (error: WebResourceError) => any;
+    gestureNavigationEnabled?: boolean;
+    userAgent?: string;
 }
