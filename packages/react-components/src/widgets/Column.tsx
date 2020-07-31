@@ -1,12 +1,11 @@
 import * as React from "react";
-import {ReactNode} from "react";
 import {ColumnProps} from "@obrie/sdk";
 
 export interface ReactColumnProps extends ColumnProps {
-    children?: ReactNode
+    children?: React.ReactNode
 }
 
 const columnView = (props: any): any => null;
-export function Column(props: ReactColumnProps): any {
+export function Column(props: ReactColumnProps): JSX.Element {
     return <columnView {...props} />
 }

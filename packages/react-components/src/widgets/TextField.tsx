@@ -1,10 +1,11 @@
 import * as React from "react";
-import {TextFieldProps} from "@obrie/sdk";
+import {TextFieldController, TextFieldProps} from "@obrie/sdk";
 
 export interface ReactTextFieldProps extends TextFieldProps {
+    ref: React.RefObject<TextFieldController>
 }
 
 const textFieldView = (props: any): any => null;
-export function TextField(props: ReactTextFieldProps): any {
-    return <textFieldView {...props} />
-}
+export const TextField = React.forwardRef((props: ReactTextFieldProps, ref): JSX.Element => {
+    return <textFieldView ref={ref} {...props} />
+})
