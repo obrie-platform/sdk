@@ -1,6 +1,6 @@
 {
   "name": "@obrie/sdk",
-  "version": "0.0.46",
+  "version": "0.0.47-alpha.0",
   "description": "SDK for Obrie mini apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,7 +17,6 @@
   "scripts": {
     "build": "webpack && dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",

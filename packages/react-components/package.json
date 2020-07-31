@@ -1,6 +1,6 @@
 {
   "name": "@obrie/react-components",
-  "version": "0.0.46",
+  "version": "0.0.47-alpha.0",
   "description": "React SDK for Obrie mini apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "build": "webpack && dts-bundle-generator -o ./dist/index.d.ts ./src/index.tsx"
   },
   "dependencies": {
-    "@obrie/sdk": "^0.0.46",
+    "@obrie/sdk": "^0.0.47-alpha.0",
     "@types/react": "^16.9.43",
     "@types/react-reconciler": "^0.18.0",
     "react": "^16.13.1",
