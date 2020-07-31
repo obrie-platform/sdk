@@ -1,8 +1,8 @@
 import {
     Alignment,
-    Axis,
+    Axis, BlendMode,
     BoxConstraints,
-    BoxDecoration,
+    BoxDecoration, BoxFit,
     BridgedValue,
     Brightness,
     Clip,
@@ -10,11 +10,11 @@ import {
     Curve,
     EdgeInsets,
     FlexibleColor,
-    FlexibleNumber,
+    FlexibleNumber, ImageRepeat,
     InputDecoration,
     MainAxisAlignment,
     MainAxisSize,
-    Overflow,
+    Overflow, Rect,
     StackFit,
     TableBorder,
     TableCellVerticalAlignment,
@@ -30,6 +30,7 @@ import {
     TextStyle,
     VerticalDirection
 } from "./interfaces";
+import {ObrieElement} from "../uimanager";
 
 export interface ButtonProps {
     textColor?: FlexibleColor;
@@ -99,6 +100,7 @@ export interface RowProps {
 
 export interface ScreenProps {
     title?: string;
+    type?: string;
     brightness?: Brightness;
     appBar?: {
         backgroundColor: string;
@@ -387,4 +389,23 @@ export interface SlideTransitionProps {
 
 export interface AnimatedBuilderProps {
     animation: BridgedValue<"animationValue">;
+}
+
+export interface ImageProps {
+    source: string;
+    width?: FlexibleNumber;
+    height?: FlexibleNumber;
+    color?: string;
+    colorBlendMode?: BlendMode;
+    fit?: BoxFit;
+    alignment?: Alignment;
+    repeat?: ImageRepeat;
+    centerSlice?: Rect;
+}
+
+export interface TabProps {
+    text?: string;
+    icon?: string;
+    iconMargin?: EdgeInsets;
+    child?: any;
 }

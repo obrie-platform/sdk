@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ContainerProps, AnimatedContainerProps} from "@obrie/sdk";
+import {AnimatedContainerProps} from "@obrie/sdk";
 
 export interface ReactAnimatedContainerProps extends AnimatedContainerProps {
     children?: React.ReactNode

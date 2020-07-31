@@ -9,6 +9,7 @@ declare global {
             animatedContainerView: any;
             animatedBuilderView: any;
             tableView: any;
+            tabView: any;
             tableRowView: any;
             safeAreaView: any;
             touchableView: any;

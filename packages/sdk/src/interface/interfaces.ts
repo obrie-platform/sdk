@@ -66,6 +66,37 @@ export type MainAxisAlignment =
     | 'spaceAround'
     | 'spaceEvenly'
 
+export type ImageRepeat = 'repeat' | 'repeatX' | 'repeatY' | 'noRepeat'
+export type BlendMode = 'clear'
+    | 'src'
+    | 'dst'
+    | 'srcOver'
+    | 'dstOver'
+    | 'srcIn'
+    | 'dstIn'
+    | 'srcOut'
+    | 'dstOut'
+    | 'srcATop'
+    | 'dstATop'
+    | 'xor'
+    | 'plus'
+    | 'modulate'
+    | 'screen'
+    | 'overlay'
+    | 'darken'
+    | 'lighten'
+    | 'colorDodge'
+    | 'colorBurn'
+    | 'hardLight'
+    | 'softLight'
+    | 'difference'
+    | 'exclusion'
+    | 'multiply'
+    | 'hue'
+    | 'saturation'
+    | 'color'
+    | 'luminosity'
+
 export type MainAxisSize = 'min' | 'max'
 export type TextBaseline = 'alphabetic' | 'ideographic'
 export type TextDirection = 'rtl' | 'ltr'
@@ -95,6 +126,13 @@ export type TableCellVerticalAlignment = 'top'
 
 export interface TextInputFormatter {
     formatEditUpdate(oldText: string, newText: string): string;
+}
+
+export interface Rect {
+    top: number;
+    left: number;
+    right: number;
+    bottom: number;
 }
 
 export interface BorderSide {
