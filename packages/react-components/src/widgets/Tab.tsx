@@ -8,5 +8,14 @@ export interface ReactTabProps extends TabProps {
 
 const tabView = (props: any): any => null;
 export function Tab(props: ReactTabProps): JSX.Element {
-    return <tabView {...props} />
+    const {child, ...propsList} = props;
+
+    if (child) {
+        return <tabView {...propsList}>
+            <tabChild>{child}</tabChild>
+            {props.children}
+        </tabView>
+    }
+
+    return <tabView {...propsList} />
 }

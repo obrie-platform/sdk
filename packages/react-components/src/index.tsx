@@ -6,6 +6,7 @@ declare global {
     namespace JSX {
         interface IntrinsicElements {
             screen: any;
+            tabChild: any;
             animatedContainerView: any;
             animatedBuilderView: any;
             tableView: any;
