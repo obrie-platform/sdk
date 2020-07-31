@@ -1,11 +1,11 @@
 import {BaseRef} from "./BaseRef";
 
-export interface TextFieldController {
+export interface TextFieldControllerModel {
     focus(): Promise<void>;
     blur(): Promise<void>;
 }
 
-export class TextFieldRef extends BaseRef implements TextFieldController {
+export class TextFieldController extends BaseRef implements TextFieldControllerModel {
     blur(): Promise<void> {
         return this.call('blur');
     }

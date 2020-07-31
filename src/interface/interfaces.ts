@@ -1,5 +1,8 @@
 export type Brightness = 'dark' | 'light'
 
+export type FlexibleColor = string | BridgedValue<"colorTween">;
+export type FlexibleNumber = number | BridgedValue<"tween">;
+
 export type BoxFit =
     'fill'
     | 'contain'
@@ -15,28 +18,28 @@ export interface DecorationImage {
 }
 
 export interface Offset {
-    x?: number;
-    y?: number;
+    x?: FlexibleNumber;
+    y?: FlexibleNumber;
 }
 
 export interface BoxShadow {
-    color?: string,
+    color?: FlexibleColor,
     offset?: Offset,
-    blurRadius?: number,
+    blurRadius?: FlexibleNumber,
 }
 
 export interface BoxDecoration {
-    color?: string,
+    color?: FlexibleColor,
     image?: DecorationImage,
-    borderRadius?: number,
+    borderRadius?: FlexibleNumber,
     boxShadow?: [BoxShadow],
 }
 
 export interface EdgeInsets {
-    top?: number,
-    left?: number,
-    right?: number,
-    bottom?: number
+    top?: FlexibleNumber,
+    left?: FlexibleNumber,
+    right?: FlexibleNumber,
+    bottom?: FlexibleNumber
 }
 
 export type Alignment =
@@ -95,8 +98,8 @@ export interface TextInputFormatter {
 }
 
 export interface BorderSide {
-    color?: string;
-    width?: number;
+    color?: FlexibleColor;
+    width?: FlexibleNumber;
 }
 
 export type InputBorderType = 'underline' | 'outline'
@@ -111,20 +114,20 @@ export interface InputDecoration {
     labelStyle?: TextStyle;
     helperText?: string;
     helperStyle?: TextStyle;
-    helperMaxLines?: number;
+    helperMaxLines?: FlexibleNumber;
     hintStyle?: TextStyle;
-    hintMaxLines?: number;
+    hintMaxLines?: FlexibleNumber;
     errorText?: string;
-    errorMaxLines?: number;
+    errorMaxLines?: FlexibleNumber;
     hasFloatingPlaceholder?: boolean;
     floatingLabelBehavior?: FloatingLabelBehavior;
     isCollapsed?: boolean;
     isDense?: boolean;
     contentPadding?: EdgeInsets;
     filled?: boolean;
-    fillColor?: string;
-    focusColor?: string;
-    hoverColor?: string;
+    fillColor?: FlexibleColor;
+    focusColor?: FlexibleColor;
+    hoverColor?: FlexibleColor;
     errorBorder?: InputBorder;
     focusedBorder?: InputBorder;
     focusedErrorBorder?: InputBorder;
@@ -135,24 +138,24 @@ export interface InputDecoration {
 
 export interface TextStyle {
     inherit?: boolean;
-    color?: string;
-    backgroundColor?: string;
-    fontSize?: number;
-    letterSpacing?: number;
-    wordSpacing?: number;
-    height?: number;
+    color?: FlexibleColor;
+    backgroundColor?: FlexibleColor;
+    fontSize?: FlexibleNumber;
+    letterSpacing?: FlexibleNumber;
+    wordSpacing?: FlexibleNumber;
+    height?: FlexibleNumber;
     decoration?: TextDecoration;
-    decorationColor?: string;
+    decorationColor?: FlexibleColor;
     decorationStyle?: TextDecorationStyle;
     textBaseline?: TextBaseline;
     fontWeight?: FontWeight;
 }
 
 export interface BoxConstraints {
-    minWidth?: number;
-    maxWidth?: number;
-    minHeight?: number;
-    maxHeight?: number;
+    minWidth?: FlexibleNumber;
+    maxWidth?: FlexibleNumber;
+    minHeight?: FlexibleNumber;
+    maxHeight?: FlexibleNumber;
 }
 
 export interface TableBorder {
@@ -162,4 +165,62 @@ export interface TableBorder {
     left?: BorderSide;
     horizontalInside?: BorderSide;
     verticalInside?: BorderSide;
+}
+
+export type Curve = [number, number, number, number];
+
+export interface Animation<T> {
+    ref: number;
+    addStatusListener: (callback: (status: AnimationStatus) => any) => any;
+    removeStatusListener: (callback: (status: AnimationStatus) => any) => any;
+    status: AnimationStatus;
+    value: number;
+    bridgeValue: BridgedValue<"animationValue">
+}
+
+export enum AnimationStatus {
+    dismissed = 'dismissed',
+    forward = 'forward',
+    reverse = 'reverse',
+    completed = 'completed',
+}
+
+export interface AnimationController<T> extends Animation<T> {
+    duration: number;
+    repeat(options: { reverse: boolean, min: number, max: number, period: number }): void;
+    reverse(options: { from?: number }): void;
+    forward(options: { from?: number }): void;
+    stop(options: { cancelled?: boolean }): void;
+    animateTo(target: number, options: { duration?: number, curve?: Curve }): void;
+}
+
+export type BridgedValueType = 'tween' | 'colorTween' | 'value' | 'animationValue';
+
+export interface BridgedValue<T extends BridgedValueType> {
+    bridge: boolean;
+    type: T;
+    ref: number;
+    payload: Record<string, any>
+}
+
+export function Tween(begin: number, end: number): { animate: (animation: Animation<any>) => BridgedValue<"tween"> } {
+    return {
+        animate: (animation: Animation<any>) => ({
+            bridge: true,
+            type: "tween",
+            payload: { begin, end },
+            ref: animation.ref
+        })
+    }
+}
+
+export function ColorTween(begin: string, end: string): { animate: (animation: Animation<any>) => BridgedValue<"colorTween"> } {
+    return {
+        animate: (animation: Animation<any>) => ({
+            bridge: true,
+            type: "colorTween",
+            payload: { begin, end },
+            ref: animation.ref
+        })
+    }
 }

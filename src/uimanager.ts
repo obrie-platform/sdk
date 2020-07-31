@@ -1,4 +1,5 @@
 import {Orientation, EdgeInsets} from "./interface/interfaces";
+import {TextFieldController} from "./controllers/TextFieldController";
 
 declare const clearTimeout: Function;
 declare const setTimeout: Function;
@@ -34,15 +35,16 @@ window.context = {
     ui: {}
 } as AppContext;
 
-export interface ObrieElement {
+export interface ObrieElement<T = any> {
     _rootContainer?: any;
+    controller?: T;
     reference: number;
     type: string;
     props?: Record<string, any>;
-    children?: ObrieElement[];
-    addChildView?(element: ObrieElement): void;
-    removeChild?(element: ObrieElement): void;
-    insertBefore?(child: ObrieElement, beforeChild: ObrieElement): void;
+    children?: ObrieElement<T>[];
+    addChildView?(element: ObrieElement<T>): void;
+    removeChild?(element: ObrieElement<T>): void;
+    insertBefore?(child: ObrieElement<T>, beforeChild: ObrieElement<T>): void;
     textContent?: string | number;
 }
 
@@ -68,7 +70,7 @@ export interface FutureError {
     message: string;
 }
 
-export const sendAndReceive: <T>(ev: string, elementId?: number, payload?: any) => Promise<T> = (ev: string, payload: any) => {
+export const sendAndReceive: <T>(ev: string, elementId?: number, payload?: any) => Promise<T> = (ev: string, elementId?: number, payload?: any) => {
     return new Promise<any>((resolve, reject) => {
         if (typeof ObrieApi !== 'undefined') {
             const id = receiverId;
@@ -96,7 +98,7 @@ export const sendAndReceive: <T>(ev: string, elementId?: number, payload?: any) 
 
             ObrieApi.sendMessage(JSON.stringify({
                 type: ev,
-                elementId: id,
+                elementId: elementId,
                 receiverId: id,
                 payload
             }));
