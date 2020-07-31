@@ -16,7 +16,7 @@
   },
   "scripts": {
     "version": "webpack && tsc --emitDeclarationOnly",
-    "postversion": "webpack publish --public"
+    "postversion": "npm publish --public"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
