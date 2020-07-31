@@ -3,3 +3,4 @@ ObrieSdkMain.iml
 yarn-error.log
 dist
 node_modules
+tsconfig.tsbuildinfo

@@ -15,7 +15,8 @@
     "url": "https://github.com/obrie-platform/react-components.git"
   },
   "scripts": {
-    "version": "webpack && tsc --emitDeclarationOnly"
+    "version": "webpack && tsc --emitDeclarationOnly",
+    "postversion": "webpack publish --public"
   },
   "dependencies": {
     "@obrie/sdk": "^0.0.47-alpha.1",
