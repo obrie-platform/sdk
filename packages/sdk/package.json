@@ -1,6 +1,6 @@
 {
   "name": "@obrie/sdk",
-  "version": "0.0.47-alpha.0",
+  "version": "0.0.47-alpha.1",
   "description": "SDK for Obrie mini apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
     "url": "https://github.com/obrie-platform/sdk.git"
   },
   "scripts": {
-    "version": "webpack && dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts"
+    "version": "webpack && tsc --emitDeclarationOnly"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
