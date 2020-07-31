@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "jsx": "react",
+    "lib": ["ES7"],
+    "rootDir": "./src",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "esModuleInterop": true,
+    "sourceMap": true
+  }
+}
