@@ -15,7 +15,7 @@
     "url": "https://github.com/obrie-platform/sdk.git"
   },
   "scripts": {
-    "build": "webpack && dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts"
+    "version": "webpack && dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
