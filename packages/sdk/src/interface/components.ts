@@ -88,7 +88,7 @@ export interface ListViewProps {
     scrollDirection?: Axis;
     reverse?: boolean;
     shrinkWrap?: boolean;
-    padding?: EdgeInsets;
+    padding?: EdgeInsets | FlexibleNumber;
 }
 
 export interface RowProps {
