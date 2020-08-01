@@ -13,6 +13,7 @@ export type BoxFit =
     | 'scaleDown'
 
 export interface DecorationImage {
+    source: string;
     alignment: Alignment,
     fit: BoxFit
 }
@@ -157,7 +158,6 @@ export interface InputDecoration {
     hintMaxLines?: FlexibleNumber;
     errorText?: string;
     errorMaxLines?: FlexibleNumber;
-    hasFloatingPlaceholder?: boolean;
     floatingLabelBehavior?: FloatingLabelBehavior;
     isCollapsed?: boolean;
     isDense?: boolean;

@@ -1,4 +1,6 @@
 declare global {
+    const window: any;
+
     interface ObrieInterface {
         sendMessage(message: string): void;
     }

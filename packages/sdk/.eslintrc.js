@@ -11,10 +11,6 @@ module.exports = {
     rules: {
         "no-implied-eval": "error",
         "no-alert": "error",
-        "no-proto": "error",
-        "no-script-url": "error",
-        "no-unused-vars": "error",
-        "no-unused-expressions": "error",
-        "no-unused-labels": "error"
+        "no-proto": "error"
     }
 };

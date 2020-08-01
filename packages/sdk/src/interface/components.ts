@@ -1,6 +1,6 @@
 import {
     Alignment,
-    Axis, BlendMode,
+    Axis, BlendMode, BorderSide,
     BoxConstraints,
     BoxDecoration, BoxFit,
     BridgedValue,
@@ -50,6 +50,8 @@ export interface ButtonProps {
     autofocus?: boolean;
     padding?: EdgeInsets | FlexibleNumber;
     clipBehavior?: Clip;
+    border?: BorderSide;
+    borderRadius?: FlexibleNumber;
     onPress?: (data: any) => any
 }
 
@@ -86,7 +88,7 @@ export interface ListViewProps {
     scrollDirection?: Axis;
     reverse?: boolean;
     shrinkWrap?: boolean;
-    padding?: Alignment;
+    padding?: EdgeInsets;
 }
 
 export interface RowProps {
@@ -147,7 +149,7 @@ export interface TextFieldProps {
     keyboardAppearance?: Brightness;
     inputFormatters?: TextInputFormatter[];
     onChanged?: (text: string) => any;
-    onEditingComplete?: (text: string) => any;
+    onEditingComplete?: () => any;
     onSubmitted?: (text: string) => any;
 }
 

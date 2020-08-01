@@ -11,6 +11,7 @@ declare global {
             animatedBuilderView: any;
             tableView: any;
             tabView: any;
+            imageView: any;
             tableRowView: any;
             safeAreaView: any;
             touchableView: any;
