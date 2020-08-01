@@ -397,12 +397,14 @@ export interface ImageProps {
     source: string;
     width?: FlexibleNumber;
     height?: FlexibleNumber;
-    color?: string;
+    color?: FlexibleColor;
     colorBlendMode?: BlendMode;
     fit?: BoxFit;
     alignment?: Alignment;
     repeat?: ImageRepeat;
     centerSlice?: Rect;
+    borderRadius?: FlexibleNumber;
+    margin?: EdgeInsets | FlexibleNumber;
 }
 
 export interface TabProps {

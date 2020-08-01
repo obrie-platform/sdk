@@ -49,3 +49,7 @@ window.fetch = async (resource: string, init?: FetchInit): Promise<Response> => 
         }
     }
 }
+
+declare global {
+    function fetch(resource: string, init?: FetchInit): Promise<Response>;
+}
