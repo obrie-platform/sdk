@@ -1,6 +1,6 @@
 {
   "name": "@obrie/sdk",
-  "version": "0.0.47-alpha.11",
+  "version": "0.0.47-alpha.12",
   "description": "SDK for Obrie mini apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
