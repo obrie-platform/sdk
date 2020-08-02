@@ -1,11 +1,11 @@
 import * as React from 'react'
 import {createContext, ReactNode, useState} from 'react'
-import {match} from "path-to-regexp"
+import {Match, match, MatchFunction, parse} from "path-to-regexp"
 import {useContext} from "..";
 
 export const RouterContext = createContext<{
     path: string,
-    match: (path: string, url: string) => boolean,
+    match: Match<any>,
     goBack: () => void,
     navigate: (path: string) => void
 }>(null)
@@ -33,13 +33,16 @@ export function Router(props: { children: ReactNode }) {
         setPath(prev[0])
     }
 
-    function matcher(path: string, url: string): boolean {
-        return !!match(path)(url)
-    }
+    const matchResult = match(path)(path)
 
     return (
         <RouterContext.Provider
-            value={{ path, navigate, match: matcher, goBack }}
+            value={{
+                path,
+                navigate,
+                match: matchResult,
+                goBack
+            }}
         >
             {props.children}
         </RouterContext.Provider>
