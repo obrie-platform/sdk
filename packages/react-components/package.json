@@ -22,6 +22,7 @@
     "@obrie/sdk": "^0.0.47-alpha.12",
     "@types/react": "^16.9.43",
     "@types/react-reconciler": "^0.18.0",
+    "path-to-regexp": "^6.1.0",
     "react": "^16.13.1",
     "react-reconciler": "^0.25.1"
   },

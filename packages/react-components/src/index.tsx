@@ -31,14 +31,15 @@ declare global {
             textView: any;
             containerView: any;
             formView: any;
+            route: any;
         }
     }
 }
 
 export * from './renderer'
-export * from './hooks/useForm'
-export * from './hooks/usePermission'
-export * from './hooks/useAnimation'
+export * from './hooks/useContext'
+export * from './hooks/useStorage'
+export * from './hooks/useRouter'
 export * from './widgets/Column'
 export * from './widgets/Row'
 export * from './widgets/Button'

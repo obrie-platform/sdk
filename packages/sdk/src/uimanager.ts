@@ -7,6 +7,8 @@ declare const window: Record<any, any>;
 declare const ObrieApi: ObrieInterface;
 
 export interface AppContext {
+    navigate(path: string): void;
+    route?: string;
     ui: {
         devicePixelRatio?: number;
         orientation?: Orientation,
@@ -32,6 +34,11 @@ window.receivers = {};
 window.flatTree = new Map<number, ObrieElement>();
 
 window.context = {
+    navigate(path: string) {
+        event('navigate', {
+            path
+        })
+    },
     ui: {}
 } as AppContext;
 

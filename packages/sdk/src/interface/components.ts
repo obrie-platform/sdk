@@ -413,3 +413,7 @@ export interface TabProps {
     iconMargin?: EdgeInsets;
     child?: any;
 }
+
+export interface RouteProps {
+    path: string;
+}
