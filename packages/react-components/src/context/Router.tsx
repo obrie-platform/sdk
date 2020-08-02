@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {createContext, ReactNode, useState} from 'react'
-import {Match, match, MatchFunction, parse} from "path-to-regexp"
+import {Match, match} from "path-to-regexp"
 import {useContext} from "..";
 
 export const RouterContext = createContext<{
@@ -11,7 +11,7 @@ export const RouterContext = createContext<{
 }>(null)
 
 export function Router(props: { children: ReactNode }) {
-    const [history, setHistory] = useState([])
+    const [history, setHistory] = useState(['/'])
     const [path, setPath] = useState("/")
     const context = useContext()
 
@@ -31,6 +31,12 @@ export function Router(props: { children: ReactNode }) {
             ...prev
         ])
         setPath(prev[0])
+    }
+
+    context.routerListener = (action: string) => {
+        if (action == 'goBack') {
+            goBack()
+        }
     }
 
     const matchResult = match(path)(path)

@@ -7,6 +7,7 @@ declare const window: Record<any, any>;
 declare const ObrieApi: ObrieInterface;
 
 export interface AppContext {
+    routerListener(action: string): any;
     navigate(path: string): void;
     route?: string;
     ui: {
@@ -32,8 +33,12 @@ function randId() {
 export const container = createContainer();
 window.receivers = {};
 window.flatTree = new Map<number, ObrieElement>();
+window.routerListener = (action: string): any => null;
 
 window.context = {
+    routerListener(action: string): any {
+        return null;
+    },
     navigate(path: string) {
         event('navigate', {
             path

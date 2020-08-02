@@ -14,7 +14,7 @@ export function Route(props: ReactRouteProps): JSX.Element {
     const matchResult = match(props.path)(router.path)
 
     if (match(props.path)(router.path)) {
-        return <route {...props}>
+        return <route {...props} current={router.path}>
             { props.render({ match: matchResult }) }
         </route>
     }
