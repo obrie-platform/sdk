@@ -1,6 +1,6 @@
 {
   "name": "@obrie/react-components",
-  "version": "0.0.47-alpha.17",
+  "version": "0.0.47-alpha.18",
   "description": "React SDK for Obrie mini apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
