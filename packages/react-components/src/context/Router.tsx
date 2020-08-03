@@ -12,6 +12,14 @@ export const RouterContext = createContext<{
     navigateAndReplace: (path: string) => void
 }>(null)
 
+export interface RouteProps<T> {
+    match?: {
+        path: string;
+        index: number;
+        params: T;
+    }
+}
+
 export function Router(props: { children: ReactNode }) {
     const [history, setHistory] = useState(['/'])
     const [path, setPath] = useState("/")
@@ -69,5 +77,3 @@ export function Router(props: { children: ReactNode }) {
         </RouterContext.Provider>
     );
 }
-
-export { MatchResult }
