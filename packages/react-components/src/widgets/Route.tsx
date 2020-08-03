@@ -14,15 +14,13 @@ export function Route(props: ReactRouteProps): JSX.Element {
     const router = useRouter()
     const matcherFunc = match(props.path)
 
-    const [activeRoute, setActiveRoute] = useState<string>(null)
     const [matchResult, setMatchResult] = useState(null)
 
     useEffect(() => {
         const localMatchResult = matcherFunc(router.path)
 
-        if (!activeRoute && localMatchResult) {
-            setActiveRoute(router.path)
-            setMatchResult(matchResult)
+        if (!matchResult) {
+            setMatchResult(localMatchResult)
         }
     })
 
