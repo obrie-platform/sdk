@@ -14,19 +14,21 @@ export function Route(props: ReactRouteProps): JSX.Element {
     const router = useRouter()
     const matcherFunc = match(props.path)
 
-    const [matchResult, setMatchResult] = useState(null)
+    const [initialMatchResult, setInitialMatchResult] = useState(null)
 
     useEffect(() => {
-        const localMatchResult = matcherFunc(router.path)
+        if (!initialMatchResult) {
+            const localMatchResult = matcherFunc(router.path)
 
-        if (!matchResult) {
-            setMatchResult(localMatchResult)
+            if (localMatchResult) {
+                setInitialMatchResult(localMatchResult)
+            }
         }
     })
 
-    if (router.history.some(elm => matcherFunc(elm)) || matchResult) {
-        return <route {...props} current={matchResult}>
-            { props.render({ match: matchResult } as RouteComponentProps<any>) }
+    if (router.history.some(elm => matcherFunc(elm)) || initialMatchResult) {
+        return <route {...props} current={initialMatchResult}>
+            { props.render({ match: initialMatchResult } as RouteComponentProps<any>) }
         </route>
     }
 
