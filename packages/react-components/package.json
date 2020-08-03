@@ -1,6 +1,6 @@
 {
   "name": "@obrie/react-components",
-  "version": "0.0.47-alpha.15",
+  "version": "0.0.47-alpha.16",
   "description": "React SDK for Obrie mini apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "postversion": "npm publish --public"
   },
   "dependencies": {
-    "@obrie/sdk": "^0.0.47-alpha.15",
+    "@obrie/sdk": "^0.0.47-alpha.16",
     "@types/react": "^16.9.43",
     "@types/react-reconciler": "^0.18.0",
     "path-to-regexp": "^6.1.0",
