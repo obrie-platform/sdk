@@ -1,5 +1,4 @@
 import {Orientation, EdgeInsets} from "./interface/interfaces";
-import {TextFieldController} from "./controllers/TextFieldController";
 
 declare const clearTimeout: Function;
 declare const setTimeout: Function;
@@ -9,6 +8,7 @@ declare const ObrieApi: ObrieInterface;
 export interface AppContext {
     routerListener(action: string): any;
     navigate(path: string): void;
+    navigateAndReplace(path: string): void;
     route?: string;
     ui: {
         devicePixelRatio?: number;
@@ -41,6 +41,11 @@ window.context = {
     },
     navigate(path: string) {
         event('navigate', {
+            path
+        })
+    },
+    navigateAndReplace(path: string) {
+        event('navigateAndReplace', {
             path
         })
     },

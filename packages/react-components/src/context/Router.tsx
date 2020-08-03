@@ -1,13 +1,15 @@
 import * as React from 'react'
 import {createContext, ReactNode, useState} from 'react'
-import {Match, match} from "path-to-regexp"
+import {match, MatchResult} from "path-to-regexp"
 import {useContext} from "..";
 
 export const RouterContext = createContext<{
     path: string,
-    match: Match<any>,
+    history: string[],
+    match: MatchResult<any>,
     goBack: () => void,
     navigate: (path: string) => void
+    navigateAndReplace: (path: string) => void
 }>(null)
 
 export function Router(props: { children: ReactNode }) {
@@ -20,6 +22,17 @@ export function Router(props: { children: ReactNode }) {
         setHistory([
             path,
             ...history
+        ])
+        setPath(path)
+    }
+
+    function navigateAndReplace(path: string) {
+        const [latest, ...restHistory] = history;
+
+        context.navigateAndReplace(path)
+        setHistory([
+            path,
+            ...restHistory
         ])
         setPath(path)
     }
@@ -44,9 +57,11 @@ export function Router(props: { children: ReactNode }) {
     return (
         <RouterContext.Provider
             value={{
+                history,
                 path,
                 navigate,
-                match: matchResult,
+                navigateAndReplace,
+                match: matchResult as MatchResult,
                 goBack
             }}
         >
@@ -54,3 +69,5 @@ export function Router(props: { children: ReactNode }) {
         </RouterContext.Provider>
     );
 }
+
+export { MatchResult }
