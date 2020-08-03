@@ -15,6 +15,7 @@ export function Route(props: ReactRouteProps): JSX.Element {
     const matcherFunc = match(props.path)
 
     const [initialMatchResult, setInitialMatchResult] = useState(null)
+    const matchHistory = router.history.some(elm => matcherFunc(elm))
 
     useEffect(() => {
         if (!initialMatchResult) {
@@ -24,9 +25,13 @@ export function Route(props: ReactRouteProps): JSX.Element {
                 setInitialMatchResult(localMatchResult)
             }
         }
+
+        if (!matchHistory && initialMatchResult) {
+            setInitialMatchResult(null)
+        }
     })
 
-    if (router.history.some(elm => matcherFunc(elm)) || initialMatchResult) {
+    if (initialMatchResult) {
         return <route {...props} current={initialMatchResult}>
             { props.render({ match: initialMatchResult } as RouteComponentProps<any>) }
         </route>
