@@ -1,11 +1,11 @@
 import * as React from "react";
 import {RouteProps} from "@obrie/sdk";
-import {useRouter} from "..";
-import {Match, match} from "path-to-regexp";
+import {RouteProps as RouteComponentProps, useRouter} from "..";
+import {match} from "path-to-regexp";
 
 export interface ReactRouteProps extends RouteProps {
     children?: React.ReactNode
-    render?: (props: { match: Match }) => JSX.Element
+    render?: (props: RouteComponentProps<any>) => JSX.Element
 }
 
 const route = (props: any): any => null;
@@ -16,7 +16,7 @@ export function Route(props: ReactRouteProps): JSX.Element {
 
     if (router.history.some(elm => matcher(elm))) {
         return <route {...props} current={matchResult ? router.path : null}>
-            { props.render({ match: matchResult }) }
+            { props.render({ match: matchResult } as RouteComponentProps<any>) }
         </route>
     }
 
