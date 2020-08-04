@@ -10,7 +10,7 @@ import {
     Curve,
     EdgeInsets,
     FlexibleColor,
-    FlexibleNumber, ImageRepeat,
+    FlexibleNumber, IconData, ImageRepeat,
     InputDecoration,
     MainAxisAlignment,
     MainAxisSize,
@@ -108,6 +108,51 @@ export interface ScreenProps {
         backgroundColor: string;
     };
     backgroundColor?: string;
+}
+
+export interface FlexibleSpaceBarProps {}
+
+export interface FloatingActionButton {
+    child?: any;
+    foregroundColor?: FlexibleColor;
+    backgroundColor?: FlexibleColor;
+    focusColor?: FlexibleColor;
+    hoverColor?: FlexibleColor;
+    splashColor?: FlexibleColor;
+    elevation?: FlexibleNumber;
+    focusElevation?: FlexibleNumber;
+    hoverElevation?: FlexibleNumber;
+    highlightElevation?: FlexibleNumber;
+    disabledElevation?: FlexibleNumber;
+    mini?: boolean; // false
+    clipBehavior?: Clip;
+    onPressed: () => any;
+}
+
+export type BottomNavigationBarType = 'fixed' | 'shifting'
+
+export interface BottomNavigationBarProps {
+    onTap?: (index: number) => any;
+    currentIndex?: number;
+    elevation?: number;
+    type?: BottomNavigationBarType;
+    fixedColor?: FlexibleColor;
+    backgroundColor?: FlexibleColor;
+    selectedItemColor?: FlexibleColor;
+    unselectedItemColor?: FlexibleColor;
+    iconSize?: number; // 24
+    selectedFontSize?: number; // 14
+    unselectedFontSize?: number; // 12
+    selectedLabelStyle?: TextStyle;
+    unselectedLabelStyle?: TextStyle;
+    showSelectedLabels?: boolean; // true
+    showUnselectedLabels?: boolean;
+}
+
+export interface BottomNavigationBarItemProps {
+    icon: any;
+    activeIcon: any;
+    title?: any;
 }
 
 export interface TextProps {
@@ -416,4 +461,49 @@ export interface TabProps {
 
 export interface RouteProps {
     path: string;
+}
+
+export interface SwitchProps {
+    value: boolean;
+    onChanged: (value: boolean) => any;
+    activeColor?: FlexibleColor;
+    activeTrackColor?: FlexibleColor;
+    inactiveThumbColor?: FlexibleColor;
+    inactiveTrackColor?: FlexibleColor;
+}
+
+export interface CheckboxProps {
+    value: boolean;
+    onChanged: (value: boolean) => any;
+    activeColor?: string;
+    checkColor?: string;
+    focusColor?: string;
+    hoverColor?: string;
+}
+
+export interface RadioProps<T> {
+    value: T;
+    groupValue: T;
+    onChanged: (value: boolean) => any;
+    activeColor?: string;
+    focusColor?: string;
+    hoverColor?: string;
+}
+
+export interface SliderProps {
+    value: number;
+    onChanged: (value: number) => any;
+    min: number; // 0.0
+    max: number; // 1.0
+    divisions: number;
+    label?: string;
+    activeColor?: string;
+    inactiveColor?: string;
+}
+
+export interface IconProps {
+    icon: IconData;
+    size?: number;
+    color?: string;
+    textDirection?: TextDirection;
 }

@@ -12,6 +12,12 @@ export type BoxFit =
     | 'none'
     | 'scaleDown'
 
+export interface IconData {
+    code: string;
+    fontFamily: string;
+    matchTextDirection?: boolean;
+}
+
 export interface DecorationImage {
     source: string;
     alignment: Alignment,

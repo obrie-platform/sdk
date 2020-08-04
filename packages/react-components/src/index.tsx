@@ -6,12 +6,20 @@ declare global {
     namespace JSX {
         interface IntrinsicElements {
             screen: any;
+            tag: any;
             tabChild: any;
+            bottomNavigationBarConfig: any;
+            bottomNavigationBarItemConfig: any;
+            iconView: any;
             animatedContainerView: any;
             animatedBuilderView: any;
             tableView: any;
             tabView: any;
             imageView: any;
+            switchView: any;
+            checkboxView: any;
+            radioView: any;
+            sliderView: any;
             tableRowView: any;
             safeAreaView: any;
             touchableView: any;
@@ -66,4 +74,11 @@ export * from './widgets/AnimatedBuilder'
 export * from './widgets/Tab'
 export * from './widgets/Image'
 export * from './widgets/Route'
+export * from './widgets/Icon'
+export * from './widgets/Switch'
+export * from './widgets/Checkbox'
+export * from './widgets/Radio'
+export * from './widgets/Slider'
+export * from './widgets/BottomNavigationBar'
+export * from './widgets/BottomNavigationBarItem'
 export * from './context/Router'

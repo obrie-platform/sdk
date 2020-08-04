@@ -32,7 +32,7 @@ export function Route(props: ReactRouteProps): JSX.Element {
     })
 
     if (initialMatchResult) {
-        return <route {...props} current={initialMatchResult}>
+        return <route {...props} current={initialMatchResult.path}>
             { props.render({ match: initialMatchResult } as RouteComponentProps<any>) }
         </route>
     }
