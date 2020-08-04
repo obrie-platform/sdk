@@ -151,7 +151,7 @@ export interface BottomNavigationBarProps {
 
 export interface BottomNavigationBarItemProps {
     icon: any;
-    activeIcon: any;
+    activeIcon?: any;
     title?: any;
 }
 
