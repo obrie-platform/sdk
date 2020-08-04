@@ -2,9 +2,9 @@ import * as React from "react";
 import {BottomNavigationBarItemProps} from "@obrie/sdk";
 
 export interface ReactBottomNavigationBarItemProps extends BottomNavigationBarItemProps {
-    icon: React.ReactNode;
-    activeIcon?: React.ReactNode;
-    title?: React.ReactNode;
+    icon: JSX.Element;
+    activeIcon?: JSX.Element;
+    title?: JSX.Element;
 }
 
 const bottomNavigationBarConfig = (props: any): any => null;

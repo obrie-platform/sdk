@@ -1,8 +1,5 @@
 import * as React from "react";
-import {ScreenProps, TabProps} from "@obrie/sdk";
-import {JSXElementConstructor, ReactChild, ReactElement, ReactNode} from "react";
-import {Container} from "./Container";
-import {ReactTabProps, Tab} from "./Tab";
+import {ScreenProps} from "@obrie/sdk";
 
 export interface ReactScreenProps extends ScreenProps {
     children?: React.ReactNode
