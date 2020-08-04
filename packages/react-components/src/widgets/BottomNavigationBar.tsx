@@ -2,7 +2,7 @@ import * as React from "react";
 import {BottomNavigationBarProps} from "@obrie/sdk";
 
 export interface ReactBottomNavigationBarProps extends BottomNavigationBarProps {
-    children: React.ReactText;
+    children: React.ReactNode;
 }
 
 const bottomNavigationBarConfig = (props: any): any => null;
