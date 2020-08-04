@@ -1,11 +1,11 @@
 import * as React from "react";
-import {RadioController, SliderProps} from "@obrie/sdk";
+import {RadioController, RadioProps} from "@obrie/sdk";
 
-export interface ReactRadioProps extends SliderProps {
-    ref: React.RefObject<RadioController<any>>
+export interface ReactRadioProps<T> extends RadioProps<T> {
+    ref: React.RefObject<RadioController<T>>
 }
 
 const radioView = (props: any): any => null;
-export const Radio = React.forwardRef((props: ReactRadioProps, ref): JSX.Element => {
+export const Radio = React.forwardRef((props: ReactRadioProps<any>, ref): JSX.Element => {
     return <radioView ref={ref} {...props} />
 })

@@ -493,9 +493,9 @@ export interface RadioProps<T> {
 export interface SliderProps {
     value: number;
     onChanged: (value: number) => any;
-    min: number; // 0.0
-    max: number; // 1.0
-    divisions: number;
+    min?: number; // 0.0
+    max?: number; // 1.0
+    divisions?: number;
     label?: string;
     activeColor?: string;
     inactiveColor?: string;
