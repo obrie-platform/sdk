@@ -10,6 +10,8 @@ declare global {
             tabChild: any;
             bottomNavigationBarConfig: any;
             bottomNavigationBarItemConfig: any;
+            addressView: any;
+            quantityView: any;
             iconView: any;
             animatedContainerView: any;
             animatedBuilderView: any;
@@ -48,6 +50,7 @@ export * from './renderer'
 export * from './hooks/useContext'
 export * from './hooks/useStorage'
 export * from './hooks/useRouter'
+export * from './hooks/useRealtime'
 export * from './widgets/Column'
 export * from './widgets/Row'
 export * from './widgets/Button'

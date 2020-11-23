@@ -31,6 +31,7 @@ import {
     VerticalDirection
 } from "./interfaces";
 import {ObrieElement} from "../uimanager";
+import {Address} from "./entities/Address";
 
 export interface ButtonProps {
     textColor?: FlexibleColor;
@@ -52,7 +53,7 @@ export interface ButtonProps {
     clipBehavior?: Clip;
     border?: BorderSide;
     borderRadius?: FlexibleNumber;
-    onPress?: (data: any) => any
+    onPress?: (data: unknown) => unknown
 }
 
 export interface ColumnProps {
@@ -81,7 +82,7 @@ export interface ExpandedProps {
 }
 
 export interface FormProps {
-    onSubmit?: (data: any) => any
+    onSubmit?: (data: unknown) => unknown
 }
 
 export interface ListViewProps {
@@ -113,7 +114,7 @@ export interface ScreenProps {
 export interface FlexibleSpaceBarProps {}
 
 export interface FloatingActionButton {
-    child?: any;
+    child?: unknown;
     foregroundColor?: FlexibleColor;
     backgroundColor?: FlexibleColor;
     focusColor?: FlexibleColor;
@@ -126,13 +127,13 @@ export interface FloatingActionButton {
     disabledElevation?: FlexibleNumber;
     mini?: boolean; // false
     clipBehavior?: Clip;
-    onPressed: () => any;
+    onPressed: () => unknown;
 }
 
 export type BottomNavigationBarType = 'fixed' | 'shifting'
 
 export interface BottomNavigationBarProps {
-    onTap?: (index: number) => any;
+    onTap?: (index: number) => unknown;
     currentIndex?: number;
     elevation?: number;
     type?: BottomNavigationBarType;
@@ -150,9 +151,9 @@ export interface BottomNavigationBarProps {
 }
 
 export interface BottomNavigationBarItemProps {
-    icon: any;
-    activeIcon?: any;
-    title?: any;
+    icon: unknown;
+    activeIcon?: unknown;
+    title?: unknown;
 }
 
 export interface TextProps {
@@ -193,25 +194,25 @@ export interface TextFieldProps {
     decoration?: InputDecoration;
     keyboardAppearance?: Brightness;
     inputFormatters?: TextInputFormatter[];
-    onChanged?: (text: string) => any;
-    onEditingComplete?: () => any;
-    onSubmitted?: (text: string) => any;
+    onChanged?: (text: string) => unknown;
+    onEditingComplete?: () => unknown;
+    onSubmitted?: (text: string) => unknown;
 }
 
 export interface TouchableProps {
-    onTapDown?: () => any;
-    onTapUp?: () => any;
-    onTap?: () => any;
-    onTapCancel?: () => any;
-    onDoubleTap?: () => any;
-    onLongPress?: () => any;
-    onLongPressStart?: () => any;
-    onLongPressUp?: () => any;
-    onLongPressEnd?: () => any;
+    onTapDown?: () => unknown;
+    onTapUp?: () => unknown;
+    onTap?: () => unknown;
+    onTapCancel?: () => unknown;
+    onDoubleTap?: () => unknown;
+    onLongPress?: () => unknown;
+    onLongPressStart?: () => unknown;
+    onLongPressUp?: () => unknown;
+    onLongPressEnd?: () => unknown;
 }
 
 export interface StackProps {
-    overflow?: Overflow;
+    clipBehavior?: Clip;
     fit?: StackFit;
 }
 
@@ -258,7 +259,7 @@ export enum WebResourceErrorType {
     proxyAuthentication = 'proxyAuthentication',
     redirectLoop = 'redirectLoop',
     timeout = 'timeout',
-    tooManyRequests = 'tooManyRequests',
+    tooMunknownRequests = 'tooMunknownRequests',
     unknown = 'unknown',
     unsafeResource = 'unsafeResource',
     unsupportedAuthScheme = 'unsupportedAuthScheme',
@@ -278,12 +279,12 @@ export interface WebResourceError {
 
 export interface WebViewProps {
     initialUrl?: string;
-    onWebViewCreated?: () => any;
+    onWebViewCreated?: () => unknown;
     javascriptMode?: JavascriptMode;
     javascriptChannels?: JavascriptChannel[];
-    onPageStarted?: (url: string) => any;
-    onPageFinished?: (url: string) => any;
-    onWebResourceError?: (error: WebResourceError) => any;
+    onPageStarted?: (url: string) => unknown;
+    onPageFinished?: (url: string) => unknown;
+    onWebResourceError?: (error: WebResourceError) => unknown;
     gestureNavigationEnabled?: boolean;
     userAgent?: string;
 }
@@ -424,7 +425,7 @@ export interface AnimatedContainerProps extends ContainerProps {
 }
 
 export interface AnimatedOpacityProps {
-    onEnd: () => any;
+    onEnd: () => unknown;
     opacity: number;
     duration: number;
     curve: Curve;
@@ -456,7 +457,7 @@ export interface TabProps {
     text?: string;
     icon?: string;
     iconMargin?: EdgeInsets;
-    child?: any;
+    child?: unknown;
 }
 
 export interface RouteProps {
@@ -465,40 +466,52 @@ export interface RouteProps {
 
 export interface SwitchProps {
     value: boolean;
-    onChanged: (value: boolean) => any;
+    onChanged: (value: boolean) => unknown;
     activeColor?: FlexibleColor;
     activeTrackColor?: FlexibleColor;
     inactiveThumbColor?: FlexibleColor;
     inactiveTrackColor?: FlexibleColor;
+    wrap: {
+        label: string
+    };
 }
 
 export interface CheckboxProps {
     value: boolean;
-    onChanged: (value: boolean) => any;
+    onChanged: (value: boolean) => unknown;
     activeColor?: string;
     checkColor?: string;
     focusColor?: string;
     hoverColor?: string;
+    wrap: {
+        label: string
+    };
 }
 
 export interface RadioProps<T> {
     value: T;
     groupValue: T;
-    onChanged: (value: boolean) => any;
+    onChanged: (value: boolean) => unknown;
     activeColor?: string;
     focusColor?: string;
     hoverColor?: string;
+    wrap: {
+        label: string
+    };
 }
 
 export interface SliderProps {
     value: number;
-    onChanged: (value: number) => any;
+    onChanged: (value: number) => unknown;
     min?: number; // 0.0
     max?: number; // 1.0
     divisions?: number;
     label?: string;
     activeColor?: string;
     inactiveColor?: string;
+    wrap: {
+        label: string
+    };
 }
 
 export interface IconProps {
@@ -506,4 +519,19 @@ export interface IconProps {
     size?: number;
     color?: string;
     textDirection?: TextDirection;
+}
+
+export interface AddressProps {
+    defaultAddressId?: string;
+    onSelect: (address: Address) => void;
+}
+
+export interface QuantityProps {
+    value?: number;
+    max?: number;
+    min?: number;
+    onSelect: (value: number) => void;
+    wrap: {
+        label: string
+    };
 }

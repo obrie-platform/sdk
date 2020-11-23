@@ -9,6 +9,8 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
     ],
     rules: {
+        "@typescript-eslint/no-explicit-any": "off",
+        "no-undef": "off",
         "no-implied-eval": "error",
         "no-alert": "error",
         "no-proto": "error"

@@ -40,9 +40,21 @@ export interface OrderStatus {
     label: string;
 }
 
+export interface Conditional {
+    state: {
+        labels: string[],
+        equalsTo: string | string[]
+    }
+}
+
 export class MapTrackingModule extends OrderModule {
     constructor(options: {
-        markers: MapMarker[]
+        mode?: 'car' | 'point',
+        markers?: MapMarker[],
+        bindToMember?: {
+            role: string
+        },
+        when?: Conditional[]
     }) {
         super(options, 'mapTracking')
     }
@@ -72,6 +84,18 @@ createOrder({
                 { key: 'Created', label: 'Order created' }
             ],
             initialStatusKey: 'Created'
+        }),
+        new MapTrackingModule({
+            mode: 'point',
+            bindToMember: {
+                role: 'Contractor'
+            },
+            when: [{
+                state: {
+                    labels: ['OrderStatus'],
+                    equalsTo: ['InProgress']
+                }
+            }]
         })
     ]
 })

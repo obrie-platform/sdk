@@ -1,15 +1,16 @@
 import {Orientation, EdgeInsets} from "./interface/interfaces";
 
-declare const clearTimeout: Function;
-declare const setTimeout: Function;
-declare const window: Record<any, any>;
+declare const clearTimeout: any;
+declare const setTimeout: any;
+declare const window: Record<string, any>;
 declare const ObrieApi: ObrieInterface;
 
 export interface AppContext {
-    routerListener(action: string): any;
+    routerListener(action: string): unknown;
     navigate(path: string): void;
     navigateAndReplace(path: string): void;
     route?: string;
+    sessionId: string;
     ui: {
         devicePixelRatio?: number;
         orientation?: Orientation,
@@ -52,6 +53,15 @@ window.context = {
     ui: {}
 } as AppContext;
 
+window.contextListeners = []
+window.updateContext = (data: any) => {
+    window.context = { ...window.context, data }
+
+    window.contextListeners.forEach((listener: any) => {
+        listener()
+    })
+}
+
 export interface ObrieElement<T = any> {
     _rootContainer?: any;
     controller?: T;
@@ -70,11 +80,11 @@ interface CreateElementOptions {
     textContent?: string;
 }
 
-export function createContainer() {
+export function createContainer(): ObrieElement {
     return createElement('container')
 }
 
-export const event = (ev: string, payload: any) => {
+export const event = (ev: string, payload: unknown): void => {
     if (typeof ObrieApi !== 'undefined') {
         ObrieApi.sendMessage(JSON.stringify({
             type: ev,
@@ -87,8 +97,9 @@ export interface FutureError {
     message: string;
 }
 
-export const sendAndReceive: <T>(ev: string, elementId?: number, payload?: any) => Promise<T> = (ev: string, elementId?: number, payload?: any) => {
-    return new Promise<any>((resolve, reject) => {
+type SendAndReceiveType = <T>(ev: string, elementId?: number, payload?: any) => Promise<T>
+export const sendAndReceive: SendAndReceiveType = <T>(ev: string, elementId?: number, payload?: any) => {
+    return new Promise<T>((resolve, reject) => {
         if (typeof ObrieApi !== 'undefined') {
             const id = receiverId;
             receiverId++;
@@ -166,37 +177,37 @@ export function createElement(type: string, options: CreateElementOptions = {}):
 }
 
 export const UIManager = {
-    removeChild: (parentInstance: ObrieElement, child: ObrieElement) => {
+    removeChild: (parentInstance: ObrieElement, child: ObrieElement): void => {
         parentInstance.removeChild(child);
 
         event('uiRemove', { 'containerRef': parentInstance.reference, 'ref': child.reference })
     },
 
-    insertBefore: (container: ObrieElement, child: ObrieElement, before: ObrieElement) => {
+    insertBefore: (container: ObrieElement, child: ObrieElement, before: ObrieElement): void => {
         container.insertBefore(child, before);
 
         event('uiInsertBefore', { 'containerRef': container.reference, 'ref': before.reference, 'element': child })
     },
 
-    update: (element: ObrieElement, props: any) => {
+    update: (element: ObrieElement, props: any): void => {
         element.props = props;
 
         event('uiUpdate', { 'ref': element.reference, 'props': props })
     },
 
-    createElement: (type: string, props: any) => {
+    createElement: (type: string, props: unknown): ObrieElement => {
         const element = createElement(type, props)
         event('uiCreate', { 'element': element })
 
         return element
     },
 
-    updateText(element: ObrieElement, text: string) {
+    updateText(element: ObrieElement, text: string): void {
         element.textContent = text;
         event('uiUpdateText', { 'ref': element.reference, 'text': text })
     },
 
-    appendChild: (parent: ObrieElement, element: ObrieElement) => {
+    appendChild: (parent: ObrieElement, element: ObrieElement): void => {
         parent.addChildView(element)
 
         event('uiAppend', { 'ref': parent.reference, 'element': element })
