@@ -1,33 +1,32 @@
-import {getPersistentData, listenPersistentData, sendAndReceive} from "@obrie/sdk";
+import {getPersistentData, listenPersistentData} from "@obrie/sdk";
 import {useEffect, useState} from "react";
 
-type PersistentData = {
+type PersistentData<T> = {
     isReady: boolean;
-    data: unknown[]
+    data: T
 }
 
-export const usePersistentStorage = (keys: string[], observe: boolean = false): PersistentData => {
-    const [data, setData] = useState<PersistentData>({
+export const usePersistentStorage = <T = {[key: string]: unknown}, Y extends keyof T = keyof T>(keys: Y[], observe: boolean = false): PersistentData<{ [key in Y]: T[key]}> => {
+    const [data, setData] = useState({
         isReady: false,
         data: null
     })
 
     useEffect(() => {
         const load = async () => {
-            const loadedData = await getPersistentData(keys)
+            const loadedData = await getPersistentData(keys as string[])
 
             setData({
                 isReady: true,
-                data: loadedData as any[]
+                data: loadedData
             })
         }
         load()
 
         if (observe) {
-            const disposer = listenPersistentData(keys, (key, value) => {
-                const keyIndex = keys.indexOf(key)
-                const items = [...data.data]
-                items[keyIndex] = value
+            const disposer = listenPersistentData(keys as string[], (key, value) => {
+                const items = {...data.data}
+                items[key] = value
                 setData({
                     ...data,
                     data: items
